@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+body { 
+	font-family: segoe-ui_normal,Segoe UI,Segoe,Segoe WP,Helvetica Neue,Helvetica,sans-serif;
+	display: grid;
+	grid-template-areas: 
+    "header header header"
+    "nav section aside"
+    "footer footer footer";
+	grid-template-rows: 80px 1fr 50px;
+	grid-template-columns: 15% 1fr 18%;
+	grid-gap: 5px;
+  height: 100vh;
+  margin: 10px;  
+}
+
+header {
+    background: #ffffff;
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.329), 0 6px 6px rgba(0, 0, 0, 0.11);
+	border-radius: 1rem;
+
+	
+	.logo {
+		display: flex;
+		align-items: center;
+	}
+
+	.user {
+		display: flex;
+        align-items: center;
+        flex-direction: column;
+	}
+}
+
+
+nav {
+
+	grid-area: nav; 
+}
+
+section {
+	margin-top: 1rem;
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    background: #ffffff; /* Fondo blanco */
+    grid-area: section;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.534), 0 6px 6px rgba(0, 0, 0, 0.178);
+
+	.cards{
+		display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+	}
+
+
+	.card{
+		width: 18rem; 
+		height: 15rem;
+		max-width: 20rem; 
+		max-height: 20rem;
+		border-radius: 1rem;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.171), 0 6px 6px rgba(0, 0, 0, 0.178);
+
+		.card-header{
+			
+			font-weight: 600;
+			font-size: 1.5rem;
+			display: flex;
+			justify-content: center;
+		}
+		.card-body{
+			background: black;
+			color: rgb(212, 127, 0);
+			border-bottom-left-radius: 1rem;
+			border-bottom-right-radius: 1rem;
+		}
+
+		p{
+			padding-left: 2rem;
+		}
+	}
+
+	.clpn{
+		width: 40rem; 
+		height: 8rem;
+		max-width: 40rem; 
+		max-height: 8rem;
+		border-radius: 1rem;
+	}
+}
+
+aside {
+	margin-top: 1rem;
+	background: #ffffff;
+	grid-area: aside; 
+	border-radius: 1rem;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.329), 0 6px 6px rgba(0, 0, 0, 0.11);
+	height: max-content;
+	.botones{
+		margin: 2rem;
+	}
+}
+
+footer {
+	margin-top: 1rem;
+	display: flex;
+    grid-area: footer;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+header, nav, section, aside, footer {
+	padding: 5px;
+}
+

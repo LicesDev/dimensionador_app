@@ -1,0 +1,113 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+    <script src="{% static 'js/home.js' %}"></script>
+    <title>Dimensionador</title>
+</head>
+<body>
+    <header> 
+      <div class="logo">
+        <img src="{% static '/images/logo.png' %}" alt="Logo de Dimensionador" width="80" height="80">
+        <h1>CubiScan</h1>
+      </div>
+      <div class="user">
+        <p style="font-size: 1.5rem;">{{ user.username }}Javier Lizama</p>
+        <p id="current-time" style="font-size: 1.5rem; margin-top: -1rem;"></p>
+      </div>
+    </header>
+    <nav class="nav flex-column">
+        <a class="nav-link active" href="#"></a>
+        <a class="nav-link" href="#"></a>
+        <a class="nav-link" href="#"></a>
+        <a class="nav-link disabled" href="#"></a>
+      </nav>
+    <section>
+    <div class="lpn">
+      <div class="card clpn border-primary mb-3" >
+        <div class="card-header">LPN</div>
+        <div class="card-body">
+            <p class="card-text" style="font-size: 2.5rem;">12,5</p>
+        </div>
+      </div>
+    </div>
+      
+    <div class="cards">
+      <div class="card border-dark mb-3" >
+        <div class="card-header">Largo</div>
+        <div class="card-body">
+          <p class="card-text"style="font-size: 4.5rem;">12,5</p>
+        </div>
+      </div>
+
+      <div class="card border-dark mb-3" >
+        <div class="card-header">Ancho</div>
+        <div class="card-body">
+            <p class="card-text"style="font-size: 4.5rem;">12,5</p>
+        </div>
+      </div>
+      
+      <div class="card border-dark mb-3">
+        <div class="card-header">Altura</div>
+        <div class="card-body">
+            <p class="card-text"style="font-size: 4.5rem;">12,5</p>
+        </div>
+      </div>
+  
+      <div class="card border-dark mb-3">
+        <div class="card-header">Peso</div>
+        <div class="card-body">
+            <p class="card-text"style="font-size: 4.5rem;">12,5</p>
+        </div>
+      </div>
+
+      <div class="card border-dark mb-3">
+          <div class="card-header">Info adicional</div>
+          <div class="card-body">
+              <p class="card-text" id="contenidoTarjeta" style="font-size: 4rem;">12,5</p>
+          </div>
+      </div>
+
+      <input type="number" id="numero" oninput="actualizarTarjeta()">
+
+    </div>
+         
+
+</section>
+    <aside>
+        <div class="d-grid gap-2 col-6 mx-auto botones">
+            <button class="btn btn-primary" type="button">Enviar</button>
+            <button class="btn btn-primary" type="button">Limpiar</button>
+          </div>
+    </aside>
+    <footer>
+        <p>&copy; 2024 Dimensionador. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+
+<script>
+ function actualizarTarjeta() {
+            const numero = parseFloat(document.getElementById('numero').value);
+            const contenidoTarjeta = document.getElementById('contenidoTarjeta');
+            const numeroFormateado = numero.toFixed(3).replace(/\.?0+$/, ''); // Elimina ceros innecesarios
+            contenidoTarjeta.textContent = numeroFormateado;
+        }
+
+  function updateTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString();
+        document.getElementById('current-time').textContent = timeString;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();  // Initial call to display time immediately
+</script>
+</html>
