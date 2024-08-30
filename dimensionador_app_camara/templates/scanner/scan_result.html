@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultado del Escaneo</title>
+</head>
+<body>
+    <h1>QR Codes Detectados</h1>
+    <ul>
+        {% for code in qr_codes %}
+            <li>{{ code }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
