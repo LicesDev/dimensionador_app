@@ -1,0 +1,1 @@
+python dimensionador_app_camara/camara.py

@@ -5,7 +5,7 @@ body {
 	display: grid;
 	grid-template-areas: 
     "header header header"
-    "nav section aside"
+    "section section aside"
     "footer footer footer";
 	grid-template-rows: 80px 1fr 50px;
 	grid-template-columns: 15% 1fr 18%;
@@ -38,11 +38,10 @@ header {
 }
 
 
-nav {
-
+/*nav {
 	grid-area: nav; 
 }
-
+*/
 section {
 	margin-top: 1rem;
     font-family: "Orbitron", sans-serif;
@@ -74,32 +73,45 @@ section {
 		max-height: 20rem;
 		border-radius: 1rem;
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.171), 0 6px 6px rgba(0, 0, 0, 0.178);
-
-		.card-header{
-			
-			font-weight: 600;
-			font-size: 1.5rem;
-			display: flex;
-			justify-content: center;
-		}
-		.card-body{
-			background: black;
-			color: rgb(212, 127, 0);
-			border-bottom-left-radius: 1rem;
-			border-bottom-right-radius: 1rem;
-		}
-
-		p{
-			padding-left: 2rem;
-		}
 	}
 
+	.lpn{
+		width: 100%;
+        display: flex;
+        align-items: center;
+		justify-content: space-around;
+	}
+	.card-header{
+		
+		font-weight: 600;
+		font-size: 1.5rem;
+		display: flex;
+		justify-content: center;
+	}
+	.card-body{
+		background: black;
+		color: rgb(212, 127, 0);
+		border-bottom-left-radius: 1rem;
+		border-bottom-right-radius: 1rem;
+	}
+
+	p{
+		padding-left: 2rem;
+	}
 	.clpn{
 		width: 40rem; 
 		height: 8rem;
 		max-width: 40rem; 
 		max-height: 8rem;
 		border-radius: 1rem;
+	}
+	.fcamara{
+		border: 0.5rem rgba(10, 0, 146, 0.192) solid;
+		border-radius: 1rem;
+	}
+	.camara{
+		border-radius: 0.5rem;
+		
 	}
 }
 
