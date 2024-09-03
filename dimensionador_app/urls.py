@@ -21,6 +21,6 @@ from dimensionador_app_web import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home, name='home'),
-    path('scanner/', include('dimensionador_app_camara.urls')),
-
+    path('camara/', include('dimensionador_app_camara.urls')),  # Agrega esta línea
 ]
+
