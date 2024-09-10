@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
     <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/funciones.js' %}" defer></script>
     <title>Dimensionador</title>
 </head>
 <body>
@@ -35,7 +36,7 @@
       <div class="card clpn border-dark mb-3" >
         <div class="card-header">LPN</div>
         <div class="card-body">
-            <p class="card-text" id="contenidoTarjeta" style="font-size: 2.5rem;">12,5</p>
+            <p class="card-text" id="lpncard" style="font-size: 2rem;">12,5</p>
         </div>
       </div>
       <div class="fcamara">
@@ -47,75 +48,57 @@
 
       
     <div class="cards">
-      <div class="card border-dark mb-3" >
-        <div class="card-header">Largo</div>
-        <div class="card-body">
-          <p class="card-text"style="font-size: 4.5rem;">12,5</p>
-        </div>
-      </div>
-
-      <div class="card border-dark mb-3" >
-        <div class="card-header">Ancho</div>
-        <div class="card-body">
-            <p class="card-text"style="font-size: 4.5rem;">12,5</p>
-        </div>
-      </div>
-
       <div class="card border-dark mb-3">
-        <div class="card-header">Altura</div>
-        <div class="card-body">
-            <p class="card-text"style="font-size: 4.5rem;">12,5</p>
-        </div>
+          <div class="card-header">Largo</div>
+          <div class="card-body">
+              <p class="card-text" id="largo" style="font-size: 4.5rem;">12,5</p>
+          </div>
       </div>
-  
       <div class="card border-dark mb-3">
-        <div class="card-header">Peso</div>
-        <div class="card-body">
-            <p class="card-text"style="font-size: 4.5rem;">12,5</p>
-        </div>
+          <div class="card-header">Ancho</div>
+          <div class="card-body">
+              <p class="card-text" id="ancho" style="font-size: 4.5rem;">12,5</p>
+          </div>
       </div>
-
+      <div class="card border-dark mb-3">
+          <div class="card-header">Altura</div>
+          <div class="card-body">
+              <p class="card-text" id="altura" style="font-size: 4.5rem;">12,5</p>
+          </div>
+      </div>
+      <div class="card border-dark mb-3">
+          <div class="card-header">Peso</div>
+          <div class="card-body">
+              <p class="card-text" id="peso" style="font-size: 4.5rem;">12,5</p>
+          </div>
+      </div>
       <div class="card border-dark mb-3">
           <div class="card-header">Info adicional</div>
           <div class="card-body">
-              <p class="card-text"  style="font-size: 4rem;">12,5</p>
+              <p class="card-text" id="infoAdicional" style="font-size: 4rem;">12,5</p>
           </div>
       </div>
-
-      <input type="number" id="numero" oninput="actualizarTarjeta()">
+  </div>
 
     </div>
          
 
 </section>
     <aside>
+      <div class="d-grid gap-2 col-6 mx-auto botones">
+        <button class="btn btn-primary" type="button" id="leerLpnBtn">Leer LPN</button>
+        <button class="btn btn-primary" type="button" id="dimensionarBtn">Dimensionar</button>
+        <button class="btn btn-primary" type="button" id="escaneoCompletoBtn">Escaneo Completo</button>
+    </div>
         <div class="d-grid gap-2 col-6 mx-auto botones">
             <button class="btn btn-primary" type="button">Enviar</button>
-            <button class="btn btn-primary" type="button">Limpiar</button>
+            <button class="btn btn-primary" type="button" id="limpiarBtn">Limpiar</button>
           </div>
     </aside>
     <footer>
-        <p>&copy; 2024 Dimensionador. Todos los derechos reservados.</p>
+        <p>© 2024 Dimensionador. Todos los derechos reservados.</p>
     </footer>
 
 </body>
 
-<script>
-if (!!window.EventSource) {
-            var source = new EventSource("/camara/sse");  // Asegúrate de que la ruta sea correcta
-            source.onmessage = function(event) {
-                document.getElementById("contenidoTarjeta").innerText = "QR encontrado: " + event.data;
-            };
-        } else {
-            console.log("Your browser does not support SSE");
-        }
-
-  function updateTime() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString();
-        document.getElementById('current-time').textContent = timeString;
-    }
-    setInterval(updateTime, 1000);
-    updateTime();  // Initial call to display time immediately
-</script>
 </html>

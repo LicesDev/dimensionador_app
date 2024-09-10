@@ -17,10 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from dimensionador_app_web import views
+from dimensionador_app_web import lectura
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home, name='home'),
-    path('camara/', include('dimensionador_app_camara.urls')),  # Agrega esta línea
+    path('camara/', include('dimensionador_app_camara.urls')), 
+    path('leer-lpn/', lectura.leer_lpn, name='leer_lpn'),
+    path('dimensionar/', lectura.dimensionar, name='dimensionar'), 
 ]
 

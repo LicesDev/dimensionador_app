@@ -43,7 +43,7 @@ header {
 }
 */
 section {
-	margin-top: 1rem;
+    margin-top: 1rem;
     font-family: "Orbitron", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -56,72 +56,79 @@ section {
     align-items: center;
     border-radius: 1rem;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.534), 0 6px 6px rgba(0, 0, 0, 0.178);
-
-	.cards{
-		display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-around;
-
-	}
-
-
-	.card{
-		width: 18rem; 
-		height: 15rem;
-		max-width: 20rem; 
-		max-height: 20rem;
-		border-radius: 1rem;
-		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.171), 0 6px 6px rgba(0, 0, 0, 0.178);
-	}
-
-	.lpn{
-		width: 100%;
-        display: flex;
-        align-items: center;
-		justify-content: space-around;
-	}
-	.card-header{
-		
-		font-weight: 600;
-		font-size: 1.5rem;
-		display: flex;
-		justify-content: center;
-	}
-	.card-body{
-		background: black;
-		color: rgb(212, 127, 0);
-		border-bottom-left-radius: 1rem;
-		border-bottom-right-radius: 1rem;
-	}
-
-	p{
-		padding-left: 2rem;
-	}
-	.clpn{
-		width: 40rem; 
-		height: 8rem;
-		max-width: 40rem; 
-		max-height: 8rem;
-		border-radius: 1rem;
-	}
-	.fcamara{
-		border: 0.5rem rgba(10, 0, 146, 0.192) solid;
-		border-radius: 1rem;
-	}
-	.camara{
-		border-radius: 0.5rem;
-		
-	}
 }
 
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem; /* Espacio entre las tarjetas */
+    width: 100%;
+    justify-items: center;
+}
+
+.card {
+    width: 18rem; 
+    height: 15rem;
+    max-width: 20rem; 
+    max-height: 20rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.171), 0 6px 6px rgba(0, 0, 0, 0.178);
+}
+
+.lpn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+	padding: 1rem;
+}
+
+.card-header {
+    font-weight: 600;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.card-body {
+    background: black;
+    color: rgb(212, 127, 0);
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+p {
+    padding-left: 2rem;
+}
+
+.clpn {
+    width: 50rem; 
+    height: 8rem;
+    max-width: 50rem; 
+    max-height: 8rem;
+    border-radius: 1rem;
+}
+
+.fcamara {
+    border: 0.5rem rgba(10, 0, 146, 0.192) solid;
+    border-radius: 1rem;
+}
+
+.camara {
+    border-radius: 0.5rem;
+}
+
+
 aside {
+	display: flex;
+	flex-direction: column;
+    justify-content: space-between;
 	margin-top: 1rem;
 	background: #ffffff;
 	grid-area: aside; 
 	border-radius: 1rem;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.329), 0 6px 6px rgba(0, 0, 0, 0.11);
-	height: max-content;
+	height: 50%;
 	.botones{
 		margin: 2rem;
 	}
