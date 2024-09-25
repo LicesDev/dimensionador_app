@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
     <script src="{% static 'js/home.js' %}"></script>
     <script src="{% static 'js/funciones.js' %}" defer></script>
+    <script src="{% static 'js/notificacion.js' %}" defer></script>
     <title>Dimensionador</title>
 </head>
 <body>
@@ -32,57 +33,41 @@
         <a class="nav-link disabled" href="#"></a>
       </nav>
     <section>
-    <div class="lpn">
-      <div class="card clpn border-dark mb-3" >
-        <div class="card-header">LPN</div>
-        <div class="card-body">
-            <p class="card-text" id="lpncard" style="font-size: 2rem;">12,5</p>
-        </div>
-      </div>
-      <div class="fcamara">
-        <img class="camara" src="{% url 'video_feed' %}" width="320" height="240">
-      </div>
-      
-    </div>
-
-
-      
-    <div class="cards">
-      <div class="card border-dark mb-3">
-          <div class="card-header">Largo</div>
-          <div class="card-body">
-              <p class="card-text" id="largo" style="font-size: 4.5rem;">12,5</p>
+      <form method="post" action="{% url 'guardar_dimensiones' %}">
+        {% csrf_token %}
+        <div class="lpn">
+          <div class="card clpn border-dark mb-3">
+              <div class="card-header">LPN</div>
+              <div class="card-body">
+                  <input type="text" class="card-text custom-input" id="lpncard" name="lpn" style="font-size: 2rem;" required>
+              </div>
+          </div>
+          <div class="fcamara">
+              <img class="camara" src="{% url 'video_feed' %}" width="320" height="240">
           </div>
       </div>
-      <div class="card border-dark mb-3">
-          <div class="card-header">Ancho</div>
-          <div class="card-body">
-              <p class="card-text" id="ancho" style="font-size: 4.5rem;">12,5</p>
+  
+      <div class="cards">
+          <div class="card border-dark mb-3">
+              <div class="card-header">Largo</div>
+              <div class="card-body">
+                  <input type="text" class="card-text custom-input" id="largo" name="largo" style="font-size: 4.5rem;" required>
+              </div>
+          </div>
+          <div class="card border-dark mb-3">
+              <div class="card-header">Ancho</div>
+              <div class="card-body">
+                  <input type="text" class="card-text custom-input" id="ancho" name="ancho" style="font-size: 4.5rem;" required>
+              </div>
+          </div>
+          <div class="card border-dark mb-3">
+              <div class="card-header">Altura</div>
+              <div class="card-body">
+                  <input type="text" class="card-text custom-input" id="altura" name="alto" style="font-size: 4.5rem;" required>
+              </div>
           </div>
       </div>
-      <div class="card border-dark mb-3">
-          <div class="card-header">Altura</div>
-          <div class="card-body">
-              <p class="card-text" id="altura" style="font-size: 4.5rem;">12,5</p>
-          </div>
-      </div>
-      <div class="card border-dark mb-3">
-          <div class="card-header">Peso</div>
-          <div class="card-body">
-              <p class="card-text" id="peso" style="font-size: 4.5rem;">12,5</p>
-          </div>
-      </div>
-      <div class="card border-dark mb-3">
-          <div class="card-header">Info adicional</div>
-          <div class="card-body">
-              <p class="card-text" id="infoAdicional" style="font-size: 4rem;">12,5</p>
-          </div>
-      </div>
-  </div>
-
-    </div>
-         
-
+       
 </section>
     <aside>
       <div class="d-grid gap-2 col-6 mx-auto botones">
@@ -91,13 +76,18 @@
         <button class="btn btn-primary" type="button" id="escaneoCompletoBtn">Escaneo Completo</button>
     </div>
         <div class="d-grid gap-2 col-6 mx-auto botones">
-            <button class="btn btn-primary" type="button">Enviar</button>
+            <button class="btn btn-primary" type="submit">Enviar</button>
             <button class="btn btn-primary" type="button" id="limpiarBtn">Limpiar</button>
           </div>
     </aside>
+  </form>
     <footer>
         <p>© 2024 Dimensionador. Todos los derechos reservados.</p>
     </footer>
+
+    <div id="notification" class="notification hidden">
+      <p id="notification-message"></p>
+  </div>
 
 </body>
 

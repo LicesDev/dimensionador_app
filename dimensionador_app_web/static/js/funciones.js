@@ -1,14 +1,26 @@
+function limpiar() {
+    document.getElementById('lpncard').value = '';
+    document.getElementById('largo').textContent = '0';
+    document.getElementById('ancho').textContent = '0';
+    document.getElementById('altura').textContent = '0';
+    document.getElementById('peso').textContent = '0';
+    document.getElementById('infoAdicional').textContent = '0';
+}
+
 document.getElementById('leerLpnBtn').addEventListener('click', function() {
-    fetch('/leer-lpn/')
+    limpiar();
+    const url = `/leer-lpn/?t=${new Date().getTime()}`;
+    fetch(url)
         .then(response => response.json())
         .then(data => {
-            document.getElementById('lpncard').textContent = data.lpn;
+            document.getElementById('lpncard').value = data.lpn;
         })
         .catch(error => console.error('Error:', error));
 });
 
 document.getElementById('dimensionarBtn').addEventListener('click', function() {
-    fetch('/dimensionar/')
+    limpiar();
+    fetch(`/dimensionar/?t=${new Date().getTime()}`)
         .then(response => response.json())
         .then(data => {
             document.getElementById('largo').textContent = data.largo;
@@ -21,14 +33,15 @@ document.getElementById('dimensionarBtn').addEventListener('click', function() {
 });
 
 document.getElementById('escaneoCompletoBtn').addEventListener('click', function() {
-    fetch('/leer-lpn/')
+    limpiar();
+    fetch(`/leer-lpn/?t=${new Date().getTime()}`)
         .then(response => response.json())
         .then(data => {
-            document.getElementById('lpncard').textContent = data.lpn;
+            document.getElementById('lpncard').value = data.lpn;
         })
         .catch(error => console.error('Error:', error));
 
-    fetch('/dimensionar/')
+    fetch(`/dimensionar/?t=${new Date().getTime()}`)
         .then(response => response.json())
         .then(data => {
             document.getElementById('largo').textContent = data.largo;
@@ -40,11 +53,4 @@ document.getElementById('escaneoCompletoBtn').addEventListener('click', function
         .catch(error => console.error('Error:', error));
 });
 
-document.getElementById('limpiarBtn').addEventListener('click', function() {
-    document.getElementById('lpncard').textContent = '0';
-    document.getElementById('largo').textContent = '0';
-    document.getElementById('ancho').textContent = '0';
-    document.getElementById('altura').textContent = '0';
-    document.getElementById('peso').textContent = '0';
-    document.getElementById('infoAdicional').textContent = '0';
-});
+document.getElementById('limpiarBtn').addEventListener('click', limpiar);

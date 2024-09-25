@@ -101,6 +101,18 @@ p {
     padding-left: 2rem;
 }
 
+.custom-input {
+    background: black;
+    color: rgb(212, 127, 0);
+    border: none;
+    font-size: 4.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.custom-input:focus {
+    outline: none;
+}
 .clpn {
     width: 50rem; 
     height: 8rem;
@@ -118,6 +130,28 @@ p {
     border-radius: 0.5rem;
 }
 
+.notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none; 
+    z-index: 1000; 
+
+    p{
+        padding-left: 0rem;
+        margin: auto;
+    }
+}
+
+.notification.hidden {
+    display: none;
+}
 
 aside {
 	display: flex;

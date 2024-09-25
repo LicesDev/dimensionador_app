@@ -105,10 +105,7 @@ class HostSync:
                 if msg.getSequenceNum() == obj['seq']:
                     synced[name] = obj['msg']
                     break
-        # Si hay 3 (todos) mensajes sincronizados, elimine todos los mensajes antiguos
-        # y devolver mensajes sincronizados
         if len(synced) == 2: # color, depth, nn
-            # Eliminar mensajes antiguos
             for name, arr in self.arrays.items():
                 for i, obj in enumerate(arr):
                     if obj['seq'] < msg.getSequenceNum():
@@ -117,11 +114,9 @@ class HostSync:
             return synced
         return False
 p=0
-#n=0
 list_dimeniones = []
 consolo = []
 with dai.Device(pipeline) as device:
-    #for i in range(0, 10, 1):
     device.setIrLaserDotProjectorBrightness(1200)
     qs = []
     qs.append(device.getOutputQueue("depth", 1))
@@ -130,28 +125,22 @@ with dai.Device(pipeline) as device:
     if COLOR:
         w, h = camRgb.getIspSize()
         intrinsics = calibData.getCameraIntrinsics(dai.CameraBoardSocket.RGB, dai.Size2f(w, h))
-        #print('Right mono camera focal length in pixels:', intrinsics[0][0])
     else:
         w, h = monoRight.getResolutionSize()
         intrinsics = calibData.getCameraIntrinsics(dai.CameraBoardSocket.RIGHT, dai.Size2f(w, h))
-    # Duerme durante 5 segundos, para que la cámara se calme.
     time.sleep(2)
     pcl_converter = PointCloudFromRGBD(intrinsics, w, h)
     sync = HostSync()
     box_estimator = BoxEstimator(args.max_dist)
-    #print("primer while "+str(p))
-    #i = 0
     t = time.time()
     while True:
         for p in range(10):
-            #print("segundo while "+str(p))
             for q in qs:
-                #print("for q " + str(p))
                 new_msg = q.tryGet()
                 if new_msg is not None:
                     msgs = sync.add_msg(q.getName(), new_msg)
                     if msgs:
-                        #print("for msgs "+ str(p))
+
                         depth = msgs["depth"].getFrame()
                         color = msgs["colorize"].getCvFrame()
                         cv2.imshow("The Forest Software Lab [Imagen Real]", color)
@@ -172,25 +161,13 @@ with dai.Device(pipeline) as device:
                             box_estimator.vizualise_box()
                             img = box_estimator.vizualise_box_2d(intrinsics, color)
                             cv2.imshow("The Forest Software Lab [Proyeccion 2D]", img)
-                            #print(f"Longitud: {l*100:.2f}, Ancho: {w*100:.2f}, Altura:{h*100:.2f}, i:{p:.2f}")
                             list_dimeniones.append(box_estimator.process_pcl(pointcloud))
-                            #consolo=pd.DataFrame(box_estimator.process_pcl(pointcloud))
-                            #cv2.imwrite(
-                            #    '/Users/javilizama/Desktop/box_measurement/Test/api_dimensiones_img/img' + '/img4'+'_'+str(p)+'.png',
-                            #    img)
+
                             p=p+1
                 consolo=pd.DataFrame(list_dimeniones,columns=['Longitud','Ancho','Altura'])
 #i=i+1
         if len(consolo)>=30:
             break
-        #else:
-        #    break
-        #if cv2.waitKey(5) == ord('q'):
-        #    break
-        #elif cv2.waitKey(5)  == ord('s'):
-            #o3d.io.write_triangle_mesh('/Users/javilizama/Desktop/jl_hd_oak/dimensionador_hd/box_measurement/api'+ '\img.png', pointcloud)
-            #cv2.imwrite('/Users/javilizama/Desktop/jl_hd_oak/dimensionador_hd/box_measurement/api' + '\img.ply', rgb)
-        #    print("image saved!")
 
 def dimens():
     consolidado_final=[]
