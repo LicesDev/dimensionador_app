@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+#!/usr/bin/env python3
+
 import time
 import cv2
 import depthai as dai
@@ -6,20 +10,20 @@ import argparse
 
 import pandas as pd
 
-from box_estimator import BoxEstimator
-from projector_3d import PointCloudFromRGBD
+from .box_estimator_app  import BoxEstimator
+from .projector_3d_app import PointCloudFromRGBD
 import warnings
 
 warnings.simplefilter("ignore")
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-maxd', '--max_dist', type=float, help="Maximum distance between camera and object in space in meters",
-                    default=1.5)
-parser.add_argument('-mins', '--min_box_size', type=float, help="Minimum box size in cubic meters",
-                    default=0.003)
+#parser = argparse.ArgumentParser()
+#parser.add_argument('-maxd', '--max_dist', type=float, help="Maximum distance between camera and object in space in meters",
+#                    default=1.5)
+#parser.add_argument('-mins', '--min_box_size', type=float, help="Minimum box size in cubic meters",
+#                    default=0.003)
 
-args = parser.parse_args()
+#args = parser.parse_args()
 
 COLOR = True
 
@@ -138,7 +142,7 @@ with dai.Device(pipeline) as device:
     time.sleep(2)
     pcl_converter = PointCloudFromRGBD(intrinsics, w, h)
     sync = HostSync()
-    box_estimator = BoxEstimator(args.max_dist)
+    box_estimator = BoxEstimator(1.5)
     #print("primer while "+str(p))
     #i = 0
     t = time.time()
@@ -154,13 +158,13 @@ with dai.Device(pipeline) as device:
                         #print("for msgs "+ str(p))
                         depth = msgs["depth"].getFrame()
                         color = msgs["colorize"].getCvFrame()
-                        cv2.imshow("The Forest Software Lab [Imagen Real]", color)
+                        #cv2.imshow("The Forest Software Lab [Imagen Real]", color)
                         cv2.imwrite(
                             '/Users/javilizama/Desktop/HD/cubiScan/imagenes' + '/color5.jpg',
                             color)
-                        cv2.imwrite(
-                            '/Users/javilizama/Desktop/HD/cubiScan/imagenes' + '/depth5.jpg',
-                            depth)
+                        #cv2.imwrite(
+                        #    '/Users/javilizama/Desktop/HD/cubiScan/imagenes' + '/depth5.jpg',
+                        #    depth)
                         rgb = cv2.cvtColor(color, cv2.COLOR_BGR2RGB)
                         pointcloud = pcl_converter.rgbd_to_projection(depth, rgb)
                         t_new = time.time()
@@ -168,10 +172,10 @@ with dai.Device(pipeline) as device:
                         fps = 1 / dt
                         t = t_new
                         l, w, h = box_estimator.process_pcl(pointcloud)
-                        if(l * w * h  > args.min_box_size):
-                            box_estimator.vizualise_box()
+                        if(l * w * h  > 0.003):
+                            #box_estimator.vizualise_box()
                             img = box_estimator.vizualise_box_2d(intrinsics, color)
-                            cv2.imshow("The Forest Software Lab [Proyeccion 2D]", img)
+                            #cv2.imshow("The Forest Software Lab [Proyeccion 2D]", img)
                             #print(f"Longitud: {l*100:.2f}, Ancho: {w*100:.2f}, Altura:{h*100:.2f}, i:{p:.2f}")
                             list_dimeniones.append(box_estimator.process_pcl(pointcloud))
                             #consolo=pd.DataFrame(box_estimator.process_pcl(pointcloud))
@@ -206,7 +210,7 @@ def dimens():
         mediana_ANCHO = consolo['Ancho'].median()
 
 
-    consolidado_final={"Longitud_cm":[round(mediana_LONG*100,0)],"Altura_cm":[round(mediana_ALTU*100,0)],"Ancho_cm":[round(mediana_ANCHO*100,0)]}
+    consolidado_final={"largo":round(mediana_LONG*100,0),"ancho":round(mediana_ANCHO*100,0),"altura":round(mediana_ALTU*100,0)}
     #consolidado_final = pd.DataFrame(consolidado_final)
     return consolidado_final
-dimen = dimens()
+#dimen = dimens()

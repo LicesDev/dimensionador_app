@@ -16,8 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from dimensionador_app_web import views
-from dimensionador_app_web import lectura
+#from .dimensionador_app_web import views
+from dimensionador_app_web import lectura , views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,6 @@ urlpatterns = [
     path('guardar_dimensiones/', views.guardar_dimensiones, name='guardar_dimensiones'),  # Añade esta línea
     path('camara/', include('dimensionador_app_camara.urls')), 
     path('leer-lpn/', lectura.leer_lpn, name='leer_lpn'),
-    path('dimensionar/', lectura.dimensionar, name='dimensionar'), 
+    path('dimensionar/', lectura.dimensionar, name='dimensionar'),
 ]
+

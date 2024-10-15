@@ -140,10 +140,10 @@ p {
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    display: none; 
-    z-index: 1000; 
+    display: none;
+    z-index: 1000;
 
-    p{
+    & p {
         padding-left: 0rem;
         margin: auto;
     }
@@ -181,3 +181,28 @@ header, nav, section, aside, footer {
 	padding: 5px;
 }
 
+@media (max-width: 1200px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .card {
+        width: 15rem;
+        height: 12rem;
+    }
+    .custom-input {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+    .card {
+        width: 12rem;
+        height: 10rem;
+    }
+    .custom-input {
+        font-size: 2.5rem;
+    }
+}

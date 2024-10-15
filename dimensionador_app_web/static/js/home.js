@@ -8,10 +8,12 @@ if (!!window.EventSource) {
 }
 
 function updateTime() {
-const now = new Date();
-const timeString = now.toLocaleTimeString();
-document.getElementById('current-time').textContent = timeString;
+    const now = new Date();
+    const formattedTime = now.toLocaleTimeString();
+    const formattedDate = now.toLocaleDateString();
+    document.getElementById('current-time').textContent = `${formattedDate} ${formattedTime}`;
+    document.getElementById('fecha').value = `${formattedDate}`;
 }
-setInterval(updateTime, 1000);
-updateTime(); 
 
+setInterval(updateTime, 1000);
+updateTime();

@@ -3,7 +3,7 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-<!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
     <title>Dimensionador</title>
 </head>
 <body>
-    <header> 
+    <header>
       <div class="logo">
         <img src="{% static '/images/logo.png' %}" alt="Logo de Dimensionador" width="80" height="80">
         <h1>CubiScan</h1>
@@ -35,7 +35,8 @@
     <section>
       <form method="post" action="{% url 'guardar_dimensiones' %}">
         {% csrf_token %}
-        <div class="lpn">
+        <input type="hidden" id="fecha" name="fecha">
+          <div class="lpn">
           <div class="card clpn border-dark mb-3">
               <div class="card-header">LPN</div>
               <div class="card-body">
@@ -46,28 +47,31 @@
               <img class="camara" src="{% url 'video_feed' %}" width="320" height="240">
           </div>
       </div>
-  
+
       <div class="cards">
           <div class="card border-dark mb-3">
               <div class="card-header">Largo</div>
               <div class="card-body">
                   <input type="text" class="card-text custom-input" id="largo" name="largo" style="font-size: 4.5rem;" required>
+                  <p class="card-text" style="font-size: 2.5rem; text-align: right" >cm</p>
               </div>
           </div>
           <div class="card border-dark mb-3">
               <div class="card-header">Ancho</div>
               <div class="card-body">
                   <input type="text" class="card-text custom-input" id="ancho" name="ancho" style="font-size: 4.5rem;" required>
+                  <p class="card-text" style="font-size: 2.5rem; text-align: right" >cm</p>
               </div>
           </div>
           <div class="card border-dark mb-3">
               <div class="card-header">Altura</div>
               <div class="card-body">
                   <input type="text" class="card-text custom-input" id="altura" name="alto" style="font-size: 4.5rem;" required>
+                  <p class="card-text" style="font-size: 2.5rem; text-align: right" >cm</p>
               </div>
           </div>
       </div>
-       
+
 </section>
     <aside>
       <div class="d-grid gap-2 col-6 mx-auto botones">
